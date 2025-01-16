@@ -1,0 +1,21 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX bg: <http://celldl.org/ontologies/bond-graph#>
+PREFIX tpl: <http://celldl.org/ontologies/model-template#>
+
+START = @<BGModelShape>
+
+<BGModelShape> {
+    a [bg:Model] ;
+    bg:component @<BGComponentShape>+
+}
+
+<BGComponentShape> {
+    tpl:template IRI ;
+    tpl:connection @<TemplateConnectionShape>*
+}
+
+<TemplateConnectionShape> {
+    tpl:port IRI ;
+    tpl:id IRI
+}

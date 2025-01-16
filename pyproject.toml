@@ -1,0 +1,13 @@
+[tool.poetry]
+package-mode = false
+authors = ["David Brooks <d.brooks@auckland.ac.nz>"]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+rdflib = "^7.1.1"
+pyshex = "^0.8.1"
+
+[tool.pyright]
+pythonVersion = "3.12"
+venvPath = "."
+venv = ".venv"

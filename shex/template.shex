@@ -1,0 +1,35 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX bg: <http://celldl.org/ontologies/bond-graph#>
+PREFIX tpl: <http://celldl.org/ontologies/model-template#>
+
+START = @<ModelTemplateShape>
+
+<ModelTemplateShape> {
+    a [tpl:Template] ;
+    bg:model IRI ;
+    rdfs:label xsd:string? ;
+    tpl:port @<ModelPortShape>* ;
+    tpl:parameter @<ModelParameterShape>* ;
+    tpl:state @<ModelStateShape>*
+}
+
+<ModelPortShape> {
+    a [tpl:Port] ;
+    tpl:id IRI ;
+    rdfs:label xsd:string?
+}
+
+<ModelParameterShape> {
+    a [tpl:Parameter] ;
+    tpl:id IRI ;
+    rdfs:label xsd:string?
+    # units/min/max/default
+}
+
+<ModelStateShape> {
+    a [tpl:State] ;
+    tpl:id IRI ;
+    rdfs:label xsd:string?
+    # units/min/max/default
+}
