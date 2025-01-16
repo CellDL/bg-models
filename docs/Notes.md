@@ -6,8 +6,8 @@
 
 There are two separate sets of RDF:
 
-1.  Template descriptions, such as [template.ttl](../models/template.ttl) for the basic model shown below, , are intended to be used by model generation tools for both validation and generation.
-2.  Model definitions, such as [vascular.ttl](../models/vascular.ttl), which uses `template.ttl` to define both a straight segment and a branch. This example only specifies interconnections, but would normally be extended to define model parameters and states (e.g. from ApiNATOMY).
+1.  Template descriptions, such as [template.ttl](../models/template.ttl), which is a description of the basic model below, are intended to be used by model generation tools for both validation and generation.
+2.  Model definitions, such as [vascular.ttl](../models/vascular.ttl), which uses `template.ttl` to define both a straight segment and a branch in a vascular network. The example only specifies interconnections, but would normally also specify model parameters and states (e.g. from ApiNATOMY).
 
 Shape expressions are used to validate RDF structure:
 
