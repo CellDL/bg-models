@@ -1,0 +1,87 @@
+@prefix : <#> .
+@prefix bg: <http://celldl.org/ontologies/bond-graph#> .
+@prefix lib: <http://celldl.org/templates/vascular#> .
+@prefix tpl: <http://celldl.org/ontologies/model-template#> .
+
+
+#                    ----- c3 -----
+#                  /                \
+#   e1 -- c1 -- c2                    c6 -- e2
+#                  \                /
+#                    -- c4 -- c5 --
+
+:ring-model
+    a bg:Model ;
+    bg:component [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :external-1
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :comp-1
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :comp-1
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :comp-2
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :comp-2
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :comp-3
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :comp-2
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :comp-4
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :comp-4
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :comp-5
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :comp-3
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :comp-6
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :comp-5
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :comp-6
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :comp-6
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :external-2
+        ]
+    ] .

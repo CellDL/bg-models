@@ -1,0 +1,41 @@
+@prefix : <#> .
+@prefix bg: <http://celldl.org/ontologies/bond-graph#> .
+@prefix lib: <http://celldl.org/templates/vascular#> .
+@prefix tpl: <http://celldl.org/ontologies/model-template#> .
+
+#              -- e2
+#            /
+#   e1 -- c1
+#            \
+#              -- e3
+
+:branch-tube-model
+    a bg:Model ;
+    bg:component [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :external-1
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :comp-1
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :comp-1
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :external-2
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:segment-template-node-1 ;
+            tpl:id :comp-1
+        ], [
+            tpl:port lib:segment-template-node-2 ;
+            tpl:id :external-3
+        ]
+    ] .

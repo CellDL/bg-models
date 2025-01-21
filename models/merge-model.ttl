@@ -3,38 +3,13 @@
 @prefix lib: <http://celldl.org/templates/vascular#> .
 @prefix tpl: <http://celldl.org/ontologies/model-template#> .
 
-:straight-tube-model
-    a bg:Model ;
-    bg:component [
-        tpl:template lib:segment-template ;
-        tpl:connection [
-            tpl:port lib:segment-template-node-1 ;
-            tpl:id :external-1
-        ], [
-            tpl:port lib:segment-template-node-2 ;
-            tpl:id :comp-1
-        ]
-    ], [
-        tpl:template lib:segment-template ;
-        tpl:connection [
-            tpl:port lib:segment-template-node-1 ;
-            tpl:id :comp-1
-        ], [
-            tpl:port lib:segment-template-node-2 ;
-            tpl:id :comp-2
-        ]
-    ], [
-        tpl:template lib:segment-template ;
-        tpl:connection [
-            tpl:port lib:segment-template-node-1 ;
-            tpl:id :comp-2
-        ], [
-            tpl:port lib:segment-template-node-2 ;
-            tpl:id :external-2
-        ]
-    ] .
+#   e1 --
+#         \
+#           c1 -- e3
+#         /
+#   e2 --
 
-:branch-tube-model
+:merge-tube-model
     a bg:Model ;
     bg:component [
         tpl:template lib:segment-template ;
@@ -49,10 +24,10 @@
         tpl:template lib:segment-template ;
         tpl:connection [
             tpl:port lib:segment-template-node-1 ;
-            tpl:id :comp-1
+            tpl:id :external-2
         ], [
             tpl:port lib:segment-template-node-2 ;
-            tpl:id :external-2
+            tpl:id :comp-1
         ]
     ], [
         tpl:template lib:segment-template ;
