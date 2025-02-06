@@ -1,0 +1,125 @@
+@prefix : <#> .
+@prefix bg: <http://celldl.org/ontologies/bond-graph#> .
+@prefix cdt: <https://w3id.org/cdt/> .
+@prefix lib: <http://celldl.org/templates/vascular#> .
+@prefix tpl: <http://celldl.org/ontologies/model-template#> .
+
+#                            -- u_GastricC --
+#                          /                  \
+#   -- u_Aorta -- u_CeliacA                    u_PortalV --
+#                          \                  /
+#                            -- u_SplenicC --
+
+:stomach-spleen
+    a bg:Model ;
+    bg:component [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:blood-pressure_1 ;
+            bg:node :u_Aorta
+        ], [
+            tpl:port lib:blood-pressure_2 ;
+            bg:node :u_CeliacA
+        ] ;
+        bg:parameter [
+            lib:resistance ;
+            bg:value "100 kPa.s/L"^^cdt:ucum
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:blood-pressure_1 ;
+            bg:node :u_CeliacA
+        ], [
+            tpl:port lib:blood-pressure_2 ;
+            bg:node :u_GastricC
+        ] ;
+        bg:parameter [
+            lib:resistance ;
+            bg:value "100 kPa.s/L"^^cdt:ucum
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:blood-pressure_1 ;
+            bg:node :u_CeliacA
+        ], [
+            tpl:port lib:blood-pressure_2 ;
+            bg:node :u_SplenicC
+        ] ;
+        bg:parameter [
+            lib:resistance ;
+            bg:value "100 kPa.s/L"^^cdt:ucum
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:blood-pressure_1 ;
+            bg:node :u_GastricC
+        ], [
+            tpl:port lib:blood-pressure_2 ;
+            bg:node :u_PortalV
+        ] ;
+        bg:parameter [
+            lib:resistance ;
+            bg:value "100 kPa.s/L"^^cdt:ucum
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:connection [
+            tpl:port lib:blood-pressure_1 ;
+            bg:node :u_SplenicC
+        ], [
+            tpl:port lib:blood-pressure_2 ;
+            bg:node :u_PortalV
+        ] ;
+        bg:parameter [
+            lib:resistance ;
+            bg:value "100 kPa.s/L"^^cdt:ucum
+        ]
+    ] .
+
+:u_Aorta
+    bg:value "16 kPa"^^cdt:ucum .
+
+:u_PortalV
+    bg:value "5 kPa"^^cdt:ucum .
+
+:u_CeliacA
+    bg:parameter [
+        lib:elastance ;
+        bg:value "400 kPa/L"^^cdt:ucum
+    ], [
+        lib:fixed-volume ;
+        bg:value "0.06 L"^^cdt:ucum
+    ] ;
+    bg:state [
+        lib:volume ;
+        bg:value "0.1 L"^^cdt:ucum
+    ] .
+
+:u_GastricC
+    bg:parameter [
+        lib:elastance ;
+        bg:value "400 kPa/L"^^cdt:ucum
+    ], [
+        lib:fixed-volume ;
+        bg:value "0.06 L"^^cdt:ucum
+    ] ;
+    bg:state [
+        lib:volume ;
+        bg:value "0.1 L"^^cdt:ucum
+    ] .
+
+:u_SplenicC
+    bg:parameter [
+        lib:elastance ;
+        bg:value "400 kPa/L"^^cdt:ucum
+    ], [
+        lib:fixed-volume ;
+        bg:value "0.06 L"^^cdt:ucum
+    ] ;
+    bg:state [
+        lib:volume ;
+        bg:value "0.1 L"^^cdt:ucum
+    ] .
