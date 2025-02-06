@@ -1,30 +1,59 @@
 @prefix : <http://celldl.org/templates/vascular#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix bg: <http://celldl.org/ontologies/bond-graph#> .
+@prefix cdt: <https://w3id.org/cdt/> .
 @prefix tpl: <http://celldl.org/ontologies/model-template#> .
 
-:segment-template
+#===============================================================================
+
+:vascular-segment-template
     a tpl:Template ;
     rdfs:label "Vascular segment template" ;
     bg:model <https://models.physiomeproject.org/exposure/segment-model> ;
-    tpl:port [
-        a tpl:Port ;
-        tpl:id :segment-template-node-1 ;
-        rdfs:label "Input pressure"
-    ], [
-        a tpl:Port ;
-        tpl:id :segment-template-node-2 ;
-        rdfs:label "Output pressure"
-    ] ;
-    tpl:parameter [
-        a tpl:Parameter ;
-        tpl:id :segment-parameter-1 ;
-        rdfs:label "Parameter description"
-        # units/min/max/default
-    ] ;
-    tpl:state [
-        a tpl:State ;
-        tpl:id :segment-state-1 ;
-        rdfs:label "State description"
-        # units/min/max/default
-    ] .
+    tpl:port
+        :blood-pressure_1,
+        :blood-pressure_2 ;
+    tpl:parameter :resistance .
+
+:blood-pressure_1
+    a tpl:Port, bg:ZeroStorageNode ;
+    rdfs:label "Input pressure" ;
+    bg:units "kPa"^^cdt:ucumunit ;
+    tpl:parameter :elastance, :fixed-volume ;
+    tpl:state :volume .
+
+:blood-pressure_2
+    a tpl:Port, bg:ZeroStorageNode ;
+    rdfs:label "output pressure" ;
+    bg:units "kPa"^^cdt:ucumunit ;
+    tpl:parameter :elastance, :fixed-volume ;
+    tpl:state :volume .
+
+#===============================================================================
+
+# Quantities associated with the segment,
+#
+# These are generic and would likely be defined outside of the template
+# definition.
+
+:elastance
+    a bg:Quantity ;
+    rdfs:label "Elastance" ;
+    bg:units "kPa/L"^^cdt:ucumunit .
+
+:fixed-volume
+    a bg:Quantity ;
+    rdfs:label "Fixed volume" ;
+    bg:units "L"^^cdt:ucumunit .
+
+:volume
+    a bg:Quantity ;
+    rdfs:label "Volume" ;
+    bg:units "L"^^cdt:ucumunit .
+
+:resistance
+    a bg:Quantity ;
+    rdfs:label "Segment resistance" ;
+    bg:units "kPa.s/L"^^cdt:ucumunit .
+
+#===============================================================================
