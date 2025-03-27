@@ -6,28 +6,54 @@
 
 #===============================================================================
 
-:vascular-segment-template
+## This is about defining BG model templates
+
+:segment-template
     a tpl:Template ;
     rdfs:label "Vascular segment template" ;
-    bg:model <https://models.physiomeproject.org/exposure/segment-model> ;
+    bg:model :segment-model ;
     tpl:port
-        :blood-pressure_1,
-        :blood-pressure_2 ;
-    tpl:parameter :resistance .
+        :segment-model:bp_1 ,
+        :segment-model:bp_2 .
 
-:blood-pressure_1
-    a tpl:Port, bg:ZeroStorageNode ;
+:segment-model
+    a bg:Model .
+    # Need reference to CellML description
+    # and mapping between CellML variables and BG nodes...
+
+:segment-model:bp_1
+    a bg:ZeroStorageNode ;
+    bg:model :segment-model ;
     rdfs:label "Input pressure" ;
     bg:units "kPa"^^cdt:ucumunit ;
     tpl:parameter :elastance, :fixed-volume ;
     tpl:state :volume .
 
-:blood-pressure_2
-    a tpl:Port, bg:ZeroStorageNode ;
+:segment-model:resistance
+    a bg:OneResistanceNode ;
+    bg:model :segment-model ;
+    ##bg:units "kPa"^^cdt:ucumunit ;    ## Flow units...
+    tpl:parameter :resistance .
+
+:segment-model:bp_2
+    a bg:ZeroStorageNode ;
+    bg:model :segment-model ;
     rdfs:label "output pressure" ;
     bg:units "kPa"^^cdt:ucumunit ;
     tpl:parameter :elastance, :fixed-volume ;
     tpl:state :volume .
+
+:segment-model:ID-00000001
+    a bg:Bond ;
+    bg:model :segment-model ;
+    bg:source :segment-model:bp_1 ;
+    bg:target :segment-model:resistance .
+
+:segment-model:ID-00000002
+    a bg:Bond ;
+    bg:model :segment-model ;
+    bg:source :segment-model:resistance ;
+    bg:target :segment-model:bp_2 .
 
 #===============================================================================
 

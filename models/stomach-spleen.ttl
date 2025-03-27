@@ -10,70 +10,78 @@
 #                          \                  /
 #                            -- u_SplenicC --
 
+## This is about using BG model templates to realise a BG model-template
+
 :stomach-spleen
     a bg:Model ;
     bg:component [
         tpl:template lib:segment-template ;
         tpl:connection [
-            tpl:port lib:blood-pressure_1 ;
+            # nodes have to be known to template
+            tpl:node lib:segment-model:bp_1 ;
             bg:node :u_Aorta
         ], [
-            tpl:port lib:blood-pressure_2 ;
+            tpl:node lib:segment-model:bp_2 ;
             bg:node :u_CeliacA
         ] ;
         bg:parameter [
+            tpl:node :segment-model:resistance ;
             bg:name lib:resistance ;
             bg:value "100 kPa.s/L"^^cdt:ucum
         ]
     ], [
         tpl:template lib:segment-template ;
         tpl:connection [
-            tpl:port lib:blood-pressure_1 ;
+            tpl:node lib:segment-model:bp_1 ;
             bg:node :u_CeliacA
         ], [
-            tpl:port lib:blood-pressure_2 ;
+            tpl:node lib:segment-model:bp_2 ;
             bg:node :u_GastricC
         ] ;
         bg:parameter [
+            tpl:node :segment-model:resistance ;
             bg:name lib:resistance ;
             bg:value "100 kPa.s/L"^^cdt:ucum
         ]
     ], [
         tpl:template lib:segment-template ;
         tpl:connection [
-            tpl:port lib:blood-pressure_1 ;
+            tpl:node lib:segment-model:bp_1 ;
             bg:node :u_CeliacA
         ], [
-            tpl:port lib:blood-pressure_2 ;
+            tpl:node lib:segment-model:bp_2 ;
             bg:node :u_SplenicC
         ] ;
         bg:parameter [
+            tpl:node :segment-model:resistance ;
             bg:name lib:resistance ;
             bg:value "100 kPa.s/L"^^cdt:ucum
         ]
     ], [
         tpl:template lib:segment-template ;
         tpl:connection [
-            tpl:port lib:blood-pressure_1 ;
+            tpl:node lib:segment-model:bp_1 ;
             bg:node :u_GastricC
         ], [
-            tpl:port lib:blood-pressure_2 ;
+            tpl:node lib:segment-model:bp_2 ;
             bg:node :u_PortalV
         ] ;
         bg:parameter [
+            tpl:node :segment-model:resistance ;
             bg:name lib:resistance ;
             bg:value "100 kPa.s/L"^^cdt:ucum
         ]
     ], [
         tpl:template lib:segment-template ;
         tpl:connection [
-            tpl:port lib:blood-pressure_1 ;
+            tpl:node lib:segment-model:bp_1 ;
             bg:node :u_SplenicC
         ], [
-            tpl:port lib:blood-pressure_2 ;
+            tpl:node lib:segment-model:bp_2 ;
             bg:node :u_PortalV
         ] ;
         bg:parameter [
+            tpl:node :segment-model:resistance ;
             bg:name lib:resistance ;
             bg:value "100 kPa.s/L"^^cdt:ucum
         ]
