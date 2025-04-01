@@ -2,6 +2,7 @@
 @prefix bg: <http://celldl.org/ontologies/bond-graph#> .
 @prefix cdt: <https://w3id.org/cdt/> .
 @prefix lib: <http://celldl.org/templates/vascular#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix tpl: <http://celldl.org/ontologies/model-template#> .
 
 #                            -- u_GastricC --
@@ -14,76 +15,66 @@
 
 :stomach-spleen
     a bg:Model ;
+    rdfs:label 'Stomach-Spleen circulation' ;
     bg:component [
         tpl:template lib:segment-template ;
-        tpl:connection [
-            # nodes have to be known to template
-            tpl:node lib:segment-model:bp_1 ;
+        tpl:interface [
+            tpl:node lib:segment-model:pressure_1 ;
             bg:node :u_Aorta
         ], [
-            tpl:node lib:segment-model:bp_2 ;
+            tpl:node lib:segment-model:flow ;
+            bg:node :v_CeliacA
+        ], [
+            tpl:node lib:segment-model:pressure_2 ;
             bg:node :u_CeliacA
-        ] ;
-        bg:parameter [
-            tpl:node :segment-model:resistance ;
-            bg:name lib:resistance ;
-            bg:value "100 kPa.s/L"^^cdt:ucum
         ]
     ], [
         tpl:template lib:segment-template ;
-        tpl:connection [
-            tpl:node lib:segment-model:bp_1 ;
+        tpl:interface [
+            tpl:node lib:segment-model:pressure_1 ;
             bg:node :u_CeliacA
         ], [
-            tpl:node lib:segment-model:bp_2 ;
+            tpl:node lib:segment-model:flow ;
+            bg:node :v_GastricC
+        ], [
+            tpl:node lib:segment-model:pressure_2 ;
             bg:node :u_GastricC
-        ] ;
-        bg:parameter [
-            tpl:node :segment-model:resistance ;
-            bg:name lib:resistance ;
-            bg:value "100 kPa.s/L"^^cdt:ucum
         ]
     ], [
         tpl:template lib:segment-template ;
-        tpl:connection [
-            tpl:node lib:segment-model:bp_1 ;
-            bg:node :u_CeliacA
-        ], [
-            tpl:node lib:segment-model:bp_2 ;
-            bg:node :u_SplenicC
-        ] ;
-        bg:parameter [
-            tpl:node :segment-model:resistance ;
-            bg:name lib:resistance ;
-            bg:value "100 kPa.s/L"^^cdt:ucum
-        ]
-    ], [
-        tpl:template lib:segment-template ;
-        tpl:connection [
-            tpl:node lib:segment-model:bp_1 ;
+        tpl:interface [
+            tpl:node lib:segment-model:pressure_1 ;
             bg:node :u_GastricC
         ], [
-            tpl:node lib:segment-model:bp_2 ;
+            tpl:node lib:segment-model:flow ;
+            bg:node :v_GastricV
+        ], [
+            tpl:node lib:segment-model:pressure_2 ;
             bg:node :u_PortalV
-        ] ;
-        bg:parameter [
-            tpl:node :segment-model:resistance ;
-            bg:name lib:resistance ;
-            bg:value "100 kPa.s/L"^^cdt:ucum
         ]
     ], [
         tpl:template lib:segment-template ;
-        tpl:connection [
-            tpl:node lib:segment-model:bp_1 ;
+        tpl:interface [
+            tpl:node lib:segment-model:pressure_1 ;
+            bg:node :u_CeliacA
+        ], [
+            tpl:node lib:segment-model:flow ;
+            bg:node :v_SplenicC
+        ], [
+            tpl:node lib:segment-model:pressure_2 ;
+            bg:node :u_SplenicC
+        ]
+    ], [
+        tpl:template lib:segment-template ;
+        tpl:interface [
+            tpl:node lib:segment-model:pressure_1 ;
             bg:node :u_SplenicC
         ], [
-            tpl:node lib:segment-model:bp_2 ;
+            tpl:node lib:segment-model:flow ;
+            bg:node :v_SplenicV
+        ], [
+            tpl:node lib:segment-model:pressure_2 ;
             bg:node :u_PortalV
-        ] ;
-        bg:parameter [
-            tpl:node :segment-model:resistance ;
-            bg:name lib:resistance ;
-            bg:value "100 kPa.s/L"^^cdt:ucum
         ]
     ] .
 
@@ -94,40 +85,76 @@
     bg:value "5 kPa"^^cdt:ucum .
 
 :u_CeliacA
-    bg:parameter [
-        bg:name lib:elastance ;
+    bg:quantities [
+        bg:quantity lib:elastance ;
+        bg:name :E_CeliacA ;
         bg:value "400 kPa/L"^^cdt:ucum
     ], [
-        bg:name lib:fixed-volume ;
+        bg:quantity lib:fixed-volume ;
+        bg:name :q_CeliacA_us ;
         bg:value "0.06 L"^^cdt:ucum
-    ] ;
-    bg:state [
-        bg:name lib:volume ;
+    ], [
+        bg:quantity lib:volume ;
+        bg:name :q_CeliacA ;
         bg:value "0.1 L"^^cdt:ucum
+    ] .
+:v_CeliacA
+    bg:quantities [
+        bg:quantity lib:resistance ;
+        rdfs:label :R_CeliacA ;
+        bg:value "100 kPa.s/L"^^cdt:ucum
     ] .
 
 :u_GastricC
-    bg:parameter [
-        bg:name lib:elastance ;
+    bg:quantities [
+        bg:quantity lib:elastance ;
+        bg:name :E_GastricC ;
         bg:value "400 kPa/L"^^cdt:ucum
     ], [
-        bg:name lib:fixed-volume ;
+        bg:quantity lib:fixed-volume ;
+        bg:name :q_GastricC_us ;
         bg:value "0.06 L"^^cdt:ucum
-    ] ;
-    bg:state [
-        bg:name lib:volume ;
+    ], [
+        bg:quantity lib:volume ;
+        bg:name :q_GastricC ;
         bg:value "0.1 L"^^cdt:ucum
+    ] .
+:v_GastricC
+    bg:quantities [
+        bg:quantity lib:resistance ;
+        bg:name :R_GastricC ;
+        bg:value "100 kPa.s/L"^^cdt:ucum
+    ] .
+:v_GastricV
+    bg:quantities [
+        bg:quantity lib:resistance ;
+        bg:name :R_GastricV ;
+        bg:value "100 kPa.s/L"^^cdt:ucum
     ] .
 
 :u_SplenicC
-    bg:parameter [
-        bg:name lib:elastance ;
+    bg:quantities [
+        bg:quantity lib:elastance ;
+        bg:name :E_SplenicC ;
         bg:value "400 kPa/L"^^cdt:ucum
     ], [
-        bg:name lib:fixed-volume ;
+        bg:quantity lib:fixed-volume ;
+        bg:name :q_SplenicC_us ;
         bg:value "0.06 L"^^cdt:ucum
-    ] ;
-    bg:state [
-        bg:name lib:volume ;
+    ], [
+        bg:quantity lib:volume ;
+        bg:name :q_SplenicC ;
         bg:value "0.1 L"^^cdt:ucum
+    ] .
+:v_SplenicC
+    bg:quantities [
+        bg:quantity lib:resistance ;
+        bg:name :R_SplenicC ;
+        bg:value "100 kPa.s/L"^^cdt:ucum
+    ] .
+:v_SplenicV
+    bg:quantities [
+        bg:quantity lib:resistance ;
+        bg:name :R_SplenicV ;
+        bg:value "100 kPa.s/L"^^cdt:ucum
     ] .
